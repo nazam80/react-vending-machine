@@ -1,4 +1,4 @@
-import {CoinsValues, getCoins, getCoinWithUnits, calculateChange} from '.'
+import {CoinsValues, getCoins, getCoinWithUnits, calculateChange, removeChangeFromCoins, refillCoinById} from '.'
 
 describe('Given an array of coins values', () => {
     it('when we calculate change for 6 euro returns 3 coins of 2 euro', () => {
@@ -125,6 +125,60 @@ describe('Given an array of coins values', () => {
         ]
     
         const result = calculateChange(130, coins)
+    
+        expect(result).toEqual(expected)
+        
+      })
+
+        
+      it('when we calculate change for 830 cents without coins of 2 euro, 1 euro and 20 cents throw Error', () => {
+        const coins = [getCoinWithUnits(CoinsValues.TWO_EURO, 0),  getCoinWithUnits(CoinsValues.ONE_EURO, 0), CoinsValues.FIFTY_CENTS, getCoinWithUnits(CoinsValues.TWENTY_CENTS, 0), CoinsValues.TEN_CENTS, CoinsValues.FIVE_CENTS]
+           
+        expect(() => calculateChange(830, coins)).toThrow("Cannot change last 505 cents because there aren't enough coins")
+        
+      })
+
+
+      it('when we remove change from coins returns an array with a quantity reduced for each coin in change', () => {
+        const coins = [
+          getCoinWithUnits(CoinsValues.TWO_EURO, 7),
+          getCoinWithUnits(CoinsValues.ONE_EURO, 2),
+          getCoinWithUnits(CoinsValues.TWENTY_CENTS, 3),
+        ]
+
+        const changeCoins = [
+          getCoinWithUnits(CoinsValues.TWO_EURO, 3),
+          getCoinWithUnits(CoinsValues.ONE_EURO, 2),
+          getCoinWithUnits(CoinsValues.TWENTY_CENTS, 1),
+        ]
+        
+        const expected = [      
+          getCoinWithUnits(CoinsValues.TWO_EURO, 4),
+          getCoinWithUnits(CoinsValues.ONE_EURO, 0),
+          getCoinWithUnits(CoinsValues.TWENTY_CENTS, 2),
+        ]
+    
+        const result = removeChangeFromCoins(coins, changeCoins)
+    
+        expect(result).toEqual(expected)
+        
+      })
+
+
+      it('when we refill 30 coins of one euro returns an array with 30 extra coins of one euro and the same quantity of other coins', () => {
+        const coins = [
+          getCoinWithUnits(CoinsValues.TWO_EURO, 7),
+          getCoinWithUnits(CoinsValues.ONE_EURO, 2),
+          getCoinWithUnits(CoinsValues.TWENTY_CENTS, 3),
+        ]
+        
+        const expected = [      
+          getCoinWithUnits(CoinsValues.TWO_EURO, 7),
+          getCoinWithUnits(CoinsValues.ONE_EURO, 32),
+          getCoinWithUnits(CoinsValues.TWENTY_CENTS, 3),
+        ]
+    
+        const result = refillCoinById(coins, 'one_euro_coin', 30)
     
         expect(result).toEqual(expected)
         
