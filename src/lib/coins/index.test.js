@@ -178,7 +178,7 @@ describe('Given an array of coins values', () => {
           getCoinWithUnits(CoinsValues.TWENTY_CENTS, 3),
         ]
     
-        const result = refillCoinById(coins, 'one_euro_coin', 30)
+        const result = refillCoinById(coins, CoinsValues.ONE_EURO.id, 30)
     
         expect(result).toEqual(expected)
         
