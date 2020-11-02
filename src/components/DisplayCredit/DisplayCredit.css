@@ -1,0 +1,13 @@
+
+.display_container{
+    border: 1px solid black;
+}
+
+.display_container > .display_number{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.display_container > .display_currency{
+    font-size: 0.9rem;
+}

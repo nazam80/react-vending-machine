@@ -1,38 +1,33 @@
+html{
+  font-size: 100%;
+}
+
 .App {
   text-align: center;
+  min-width: 4rem;
+  max-width: 50rem;
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.vm-container{
+  border: 0.1rem solid red;
+  margin: 0.5rem;
+  display: flex;  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.vm-products-container{    
+  flex: 4 1 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.vm-coins-container{  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 1rem;
+  max-width: 10rem;
+  flex: 1 1 auto;
+
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.vm-coins-container > .coins_buttons{
+  margin: 1rem 0 1rem 0;
 }

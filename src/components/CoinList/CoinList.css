@@ -1,0 +1,15 @@
+
+
+.coins_container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.coin_container{
+    padding: 1rem; 
+}
+
+.coin_container > .coin_name{
+    font-size: 1.5rem;
+}
